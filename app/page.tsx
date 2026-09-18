@@ -66,6 +66,9 @@ export default function Page() {
   const triggers = zapier.items.filter((item) => item.kind === "trigger").length;
   const actions = zapier.items.filter((item) => item.kind === "action").length;
   const spendLimit = process.env.NEXT_PUBLIC_DEMO_SPEND_LIMIT;
+  // The variable carries the limit as it is set on the provider ("5 USD/month").
+  // The sentence already says monthly, so the period is not repeated.
+  const spendAmount = spendLimit?.replace(/\s*(\/|per\s+)month\s*$/i, "").trim();
 
   return (
     <main className="mx-auto w-full max-w-[860px] px-6 md:px-8">
@@ -277,7 +280,7 @@ export default function Page() {
             <p className="mt-8 text-[15px] leading-[1.7] text-ink-faint">
               {spendLimit ? (
                 <>
-                  Live generation runs on a dedicated provider workspace with a monthly spend limit of {spendLimit}.
+                  Live generation runs on a dedicated provider workspace with a monthly spend limit of {spendAmount}.
                   Per-instance and per-address limits apply on top; they reset when the process restarts. In this
                   deployment they are {PER_INSTANCE_DAILY_LIMIT} live generations a day for one server instance and{" "}
                   {PER_ADDRESS_DAILY_LIMIT} per address.
