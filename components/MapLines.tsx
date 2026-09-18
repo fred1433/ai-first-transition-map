@@ -4,6 +4,12 @@ import { useState } from "react";
 import mapData from "@/map/map.json";
 import manifest from "@/crawl/manifest.json";
 
+const SHORT_LABEL: Record<string, string> = {
+  "proposed-pilot": "Proposed pilot",
+  "keep-existing": "Keep existing",
+  deferred: "Deferred",
+};
+
 const TONE: Record<string, string> = {
   "proposed-pilot": "bg-bronze text-white border-bronze",
   "keep-existing": "bg-paper-sunk text-ink-soft border-rule-strong",
@@ -24,22 +30,24 @@ export function MapLines() {
             <button
               type="button"
               onClick={() => setOpen(expanded ? null : line.id)}
-              className="flex w-full cursor-pointer items-baseline gap-5 py-6 text-left transition-colors hover:bg-paper-sunk/50"
+              className="grid w-full cursor-pointer grid-cols-1 gap-3 py-6 text-left transition-colors hover:bg-paper-sunk/50 md:grid-cols-[150px_1fr_auto] md:items-baseline md:gap-5"
             >
-              <span
-                className={`mt-1 shrink-0 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide ${TONE[line.decision]}`}
-              >
-                {line.decisionLabel}
+              <span className="flex">
+                <span
+                  className={`mt-1 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide ${TONE[line.decision]}`}
+                >
+                  {SHORT_LABEL[line.decision] ?? line.decisionLabel}
+                </span>
               </span>
-              <span className="min-w-0 flex-1">
+              <span className="min-w-0">
                 <span className="block text-[19px] font-medium tracking-[-0.01em] text-ink">{line.workflow}</span>
                 <span className="mt-1 block text-[15px] leading-relaxed text-ink-faint">{line.whyThisChoice}</span>
               </span>
-              <span className="mt-1 shrink-0 text-[13px] text-ink-faint">{expanded ? "Close" : "Detail"}</span>
+              <span className="hidden text-[13px] text-ink-faint md:block">{expanded ? "Close" : "Detail"}</span>
             </button>
 
             {expanded ? (
-              <div className="grid gap-7 pb-10 md:grid-cols-2">
+              <div className="grid gap-7 pb-10 md:grid-cols-2 md:pl-[170px]">
                 <div>
                   <p className="label">Documented behaviour</p>
                   <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{line.documentedBehaviour.summary}</p>
