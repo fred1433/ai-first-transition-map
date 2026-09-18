@@ -73,9 +73,13 @@ ANTHROPIC_MODEL=claude-sonnet-5 ANTHROPIC_API_KEY=... npm run dev
 ```
 
 The model identifier is read from the environment and never written into the code. The call is bounded:
-capped output length, the static instruction marked for caching, a global cap of 40 live generations a
-day across all visitors and a smaller cap per address, and a polite refusal once a cap is reached. No key
-ever reaches the browser.
+capped output length, a global cap of 40 live generations a day across all visitors and a smaller cap per
+address, and a polite refusal once a cap is reached. No key ever reaches the browser.
+
+The static instruction carries a cache marker, and at its current length that marker does nothing: the
+instruction is shorter than the minimum prefix the model will cache, and the responses come back with
+zero cached tokens. It is left in place because it is where caching would start to pay if the
+instruction grew, and it is written here rather than counted as a saving.
 
 ## Reading the sources again
 
