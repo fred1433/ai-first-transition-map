@@ -4,13 +4,28 @@
  * Three checks run on every draft, recorded or live:
  *  1. contract: only the three narrative fields survive, anything else is dropped
  *     and reported (a note that carries an instruction cannot widen the contract);
- *  2. provenance: every quote a field relies on must appear verbatim in the notes;
- *  3. quantities: a number in the draft must be traceable to the notes, so a
- *     shower of rain does not become two hours of delay.
+ *  2. provenance: every excerpt a sentence relies on must appear verbatim in the
+ *     notes, and stays attached to that sentence rather than to the field;
+ *  3. quantities: a number, a clock time or a sum in a sentence must be traceable
+ *     to the notes that sentence cites, so a shower of rain does not become two
+ *     hours of delay.
  *
- * A field that fails a check is withheld. A withheld field is never applied.
+ * What these checks are, and what they are not: they compare words. Source
+ * excerpts are checked against the notes. Factual fidelity still requires review,
+ * and the counter-examples in tests/validate.test.ts show where a lexical check
+ * ends, with an invented responsibility that carries an authentic excerpt.
+ *
+ * A sentence that fails a check withholds its field. A withheld field is never
+ * applied.
  */
-import { NARRATIVE_FIELDS, type MissingInformation, type NarrativeField, type ProposedField } from "./types";
+import {
+  NARRATIVE_FIELDS,
+  type MissingInformation,
+  type NarrativeField,
+  type ProposedField,
+  type ProposedPart,
+  type Withheld,
+} from "./types";
 
 export interface DraftShape {
   fields: ProposedField[];
@@ -31,10 +46,13 @@ export function normaliseForComparison(value: string): string {
   return value
     .toLowerCase()
     .replace(/[‘’“”]/g, "'")
-    .replace(/[^a-z0-9:.,'%/\- ]+/g, " ")
+    .replace(/[^a-z0-9:.,'%/$€£\- ]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
+
+const joinParts = (parts: ProposedPart[]) => parts.map((part) => part.text).join(" ").trim();
+const allQuotes = (parts: ProposedPart[]) => parts.flatMap((part) => part.provenance);
 
 /** Keeps the allowed shape, drops the rest, and says what it dropped. */
 export function applyContract(raw: unknown): DraftShape {
@@ -68,15 +86,19 @@ export function applyContract(raw: unknown): DraftShape {
           })
           .filter((quote): quote is { quote: string } => quote !== null)
       : [];
+
     // A model often answers with one entry per sentence. The form has one field,
-    // so entries for the same field are merged rather than silently overwriting
-    // each other when the draft is applied.
+    // so the texts are joined rather than silently overwriting each other, and
+    // each sentence keeps the excerpts it cited: a fact and its excerpt stay
+    // together, which is what a reviewer needs in order to check either one.
+    const part: ProposedPart = { text, provenance };
     const existing = fields.find((entry) => entry.field === field);
     if (existing) {
-      existing.text = `${existing.text} ${text}`.trim();
-      existing.provenance = [...existing.provenance, ...provenance];
+      existing.parts.push(part);
+      existing.text = joinParts(existing.parts);
+      existing.provenance = allQuotes(existing.parts);
     } else {
-      fields.push({ field, text, provenance });
+      fields.push({ field, text, parts: [part], provenance: [...provenance] });
     }
   }
 
@@ -102,8 +124,10 @@ export function applyContract(raw: unknown): DraftShape {
  * site never become two hours of delay. For anything else, the number itself has
  * to appear in the notes, which leaves a supervisor free to rephrase.
  *
- * Known limit, stated rather than hidden: outside the list below the check reads
- * the number, not what the number counts.
+ * Known limit, stated rather than hidden: outside the list below, and outside the
+ * clock times and sums read separately, the check reads the number, not what the
+ * number counts. And a sentence with no number at all, an invented cause or an
+ * invented responsibility, is not something words can catch.
  */
 export const COMMITMENT_UNITS = [
   "hour", "hours", "minute", "minutes", "day", "days", "week", "weeks", "month", "months",
@@ -111,9 +135,42 @@ export const COMMITMENT_UNITS = [
   "man", "crew", "crews", "inspector", "inspectors", "visitor", "visitors", "truck", "trucks",
 ];
 
+const CURRENCY_WORDS = ["dollar", "dollars", "usd", "euro", "euros", "eur", "pound", "pounds", "gbp"];
+
 const singular = (word: string) => (word.endsWith("s") ? word.slice(0, -1) : word);
 
-/** Quantities in a draft that the notes do not support. */
+/**
+ * Clock times, read wherever they sit in the sentence. A time of day commits the
+ * record to a moment, and it needs no unit behind it to do so: "resumed at 14:30"
+ * has to come from the notes, whether or not another word follows it.
+ */
+function unsupportedTimes(needle: string, haystack: string): string[] {
+  const found: string[] = [];
+  for (const match of needle.matchAll(/\b(\d{1,2}[:h]\d{2})\s*(am|pm)?/g)) {
+    const time = match[1];
+    const suffix = match[2] ? ` ${match[2]}` : "";
+    if (!haystack.includes(time)) found.push(`${time}${suffix}`);
+  }
+  return found;
+}
+
+/**
+ * Sums of money, read from the symbol as well as from the word. A number at the
+ * end of a sentence has no unit after it, which is exactly where a cost slips
+ * through if the check only looks for "number then word".
+ */
+function unsupportedAmounts(needle: string, haystack: string): string[] {
+  const found: string[] = [];
+  for (const match of needle.matchAll(/([$€£])\s?(\d[\d.,]*)/g)) {
+    const [symbol, digits] = [match[1], match[2].replace(/[.,]$/, "")];
+    const withSymbol = haystack.includes(`${symbol}${digits}`) || haystack.includes(`${symbol} ${digits}`);
+    const withWord = CURRENCY_WORDS.some((word) => haystack.includes(`${digits} ${word}`));
+    if (!withSymbol && !withWord) found.push(`${symbol}${digits}`);
+  }
+  return found;
+}
+
+/** Quantities in a sentence that the notes do not support. */
 export function unsupportedQuantities(text: string, supporting: string): string[] {
   const haystack = normaliseForComparison(supporting);
   const needle = normaliseForComparison(text);
@@ -129,37 +186,60 @@ export function unsupportedQuantities(text: string, supporting: string): string[
       : haystack.includes(quantity);
     if (!supported) unsupported.push(phrase);
   }
-  return [...new Set(unsupported)];
+  return [...new Set([...unsupported, ...unsupportedTimes(needle, haystack), ...unsupportedAmounts(needle, haystack)])];
 }
 
-/** Marks every field the notes do not support. Returns a new list, nothing is mutated. */
-export function withholdUnsupported(fields: ProposedField[], sourceNotes: string): ProposedField[] {
-  const notes = normaliseForComparison(sourceNotes);
+/** Checks one sentence against the notes and the excerpts that sentence cites. */
+function checkPart(part: ProposedPart, notes: string, normalisedNotes: string): ProposedPart {
+  if (part.provenance.length === 0) {
+    return { ...part, withheld: { reason: "no_provenance", detail: "The sentence cites nothing from the notes." } };
+  }
+  const unquoted = part.provenance.filter((entry) => !normalisedNotes.includes(normaliseForComparison(entry.quote)));
+  if (unquoted.length > 0) {
+    return {
+      ...part,
+      withheld: {
+        reason: "quote_not_in_notes",
+        detail: `Cited but absent from the notes: ${unquoted.map((entry) => `"${entry.quote}"`).join(", ")}`,
+      },
+    };
+  }
+  const supporting = `${notes} ${part.provenance.map((entry) => entry.quote).join(" ")}`;
+  const quantities = unsupportedQuantities(part.text, supporting);
+  if (quantities.length > 0) {
+    return {
+      ...part,
+      withheld: { reason: "quantity_not_in_notes", detail: `Stated but absent from the notes: ${quantities.join(", ")}` },
+    };
+  }
+  return { text: part.text, provenance: part.provenance };
+}
+
+/** A field on its way in: the sentences may not have been separated yet. */
+export type UncheckedField = Omit<ProposedField, "parts" | "withheld"> & { parts?: ProposedPart[] };
+
+/**
+ * Marks every sentence the notes do not support, and withholds the field that
+ * carries it. Returns a new list, nothing is mutated.
+ */
+export function withholdUnsupported(fields: UncheckedField[], sourceNotes: string): ProposedField[] {
+  const normalisedNotes = normaliseForComparison(sourceNotes);
   return fields.map((field) => {
-    if (field.provenance.length === 0) {
-      return { ...field, withheld: { reason: "no_provenance", detail: "The draft cites nothing from the notes." } };
-    }
-    const unquoted = field.provenance.filter((entry) => !notes.includes(normaliseForComparison(entry.quote)));
-    if (unquoted.length > 0) {
-      return {
-        ...field,
-        withheld: {
-          reason: "quote_not_in_notes",
-          detail: `Cited but absent from the notes: ${unquoted.map((entry) => `"${entry.quote}"`).join(", ")}`,
-        },
-      };
-    }
-    const supporting = `${sourceNotes} ${field.provenance.map((entry) => entry.quote).join(" ")}`;
-    const quantities = unsupportedQuantities(field.text, supporting);
-    if (quantities.length > 0) {
-      return {
-        ...field,
-        withheld: {
-          reason: "quantity_not_in_notes",
-          detail: `Stated but absent from the notes: ${quantities.join(", ")}`,
-        },
-      };
-    }
-    return { ...field };
+    const parts = (field.parts ?? [{ text: field.text, provenance: field.provenance }]).map((part) =>
+      checkPart(part, sourceNotes, normalisedNotes),
+    );
+    const failed = parts.find((part) => part.withheld);
+    const base: ProposedField = {
+      field: field.field,
+      text: joinParts(parts),
+      parts,
+      provenance: allQuotes(parts),
+    };
+    if (!failed) return base;
+    const detail: Withheld =
+      parts.length > 1
+        ? { reason: failed.withheld!.reason, detail: `${failed.withheld!.detail} In: "${failed.text}"` }
+        : failed.withheld!;
+    return { ...base, withheld: detail };
   });
 }

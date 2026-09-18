@@ -13,6 +13,11 @@ const CHECKS = [
   { id: "invented-figures", title: "The draft states a duration the notes never gave" },
 ];
 
+const VERDICT: Record<string, string> = {
+  operation_blocked: "OPERATION BLOCKED, AS EXPECTED",
+  fields_withheld: "UNAUTHORISED FIELDS WITHHELD, PERMITTED TEXT APPLIED",
+};
+
 export function Probes() {
   const [results, setResults] = useState<Record<string, ProbeResult>>({});
   const [busy, setBusy] = useState<string | null>(null);
@@ -41,7 +46,7 @@ export function Probes() {
   return (
     <div className="mt-14">
       <div className="flex flex-wrap items-baseline justify-between gap-4">
-        <p className="label">What the server refuses</p>
+        <p className="label">Seven control scenarios</p>
         <button
           type="button"
           onClick={runAll}
@@ -51,6 +56,11 @@ export function Probes() {
           {busy ? "Running" : "Run all seven"}
         </button>
       </div>
+      <p className="mt-3 max-w-[660px] text-[14px] leading-relaxed text-ink-faint">
+        Five of them are refusals. Two are scenarios where the unauthorised fields are withheld and the permitted text
+        is applied, which is a different outcome and is labelled as one. Each scenario reports what was expected, what
+        came back, and where the record ended up.
+      </p>
 
       <div className="mt-5 divide-y divide-rule border-y border-rule">
         {CHECKS.map((check) => {
@@ -61,7 +71,7 @@ export function Probes() {
                 <p className="text-[16px] text-ink">{check.title}</p>
                 {result ? (
                   <span className="shrink-0 text-[12px] font-semibold tracking-wide text-bronze">
-                    {result.passed ? "REFUSED AS EXPECTED" : "UNEXPECTED RESULT"}
+                    {result.passed ? VERDICT[result.outcomeKind] : "UNEXPECTED RESULT"}
                   </span>
                 ) : (
                   <button
@@ -76,16 +86,30 @@ export function Probes() {
               </div>
 
               {result ? (
-                <div className="mt-3 space-y-2 text-[14px] leading-relaxed">
+                <div className="mt-3 space-y-3 text-[14px] leading-relaxed">
                   <p className="text-ink-faint">{result.attempt}</p>
+                  <p className="text-ink-soft">
+                    <span className="text-ink-faint">Expected: </span>
+                    {result.expected}
+                  </p>
                   <p className="text-ink-soft">
                     <span className="text-ink-faint">Observed: </span>
                     {result.observed}
                   </p>
-                  <p className="font-mono text-[12px] text-ink-faint">
-                    record version {result.recordVersionBefore} to {result.recordVersionAfter}, status{" "}
-                    {result.statusBefore} to {result.statusAfter}
-                  </p>
+                  <div>
+                    <p className="text-ink-faint">Final state of the record</p>
+                    <ul className="mt-1 space-y-1 font-mono text-[12px] leading-[1.6] text-ink-faint">
+                      {result.invariants.map((invariant) => (
+                        <li key={invariant.name}>
+                          {invariant.held ? "holds" : "FAILS"}, {invariant.name}: {invariant.observed}
+                        </li>
+                      ))}
+                      <li>
+                        narrative {result.narrativeBefore} to {result.narrativeAfter}
+                      </li>
+                    </ul>
+                  </div>
+                  <p className="text-[13px] text-ink-faint">{result.answerNote}</p>
                 </div>
               ) : null}
             </div>

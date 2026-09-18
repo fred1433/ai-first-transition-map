@@ -12,7 +12,7 @@ import { recordedAnswer } from "@/lib/prototype/fixtures";
 import { inspect, takeLiveCall } from "@/lib/prototype/limits";
 import { ACTORS, LOG_ID, scenario } from "@/lib/prototype/scenario";
 import { getSession, SessionExpired, startSession } from "@/lib/prototype/sessions";
-import { Refused } from "@/lib/prototype/types";
+import { NARRATIVE_FIELDS, Refused, type NarrativeField } from "@/lib/prototype/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -63,13 +63,26 @@ export async function POST(request: Request) {
         });
       }
 
+      // The durable limit is the monthly spend limit on the provider workspace
+      // this deployment calls. If none is declared, live generation is off here,
+      // and it is the server that refuses it, not a hidden button.
+      if (!process.env.NEXT_PUBLIC_DEMO_SPEND_LIMIT) {
+        return NextResponse.json(
+          {
+            error:
+              "Live generation is switched off on this deployment. What this page shows is the recorded demonstration.",
+          },
+          { status: 503 },
+        );
+      }
+
       const decision = takeLiveCall(clientId(request));
       if (!decision.allowed) {
         return NextResponse.json(
           {
             error:
-              decision.reason === "global_daily_cap"
-                ? "The demonstration has reached its cap of live generations for today. The recorded runs still work, and the cap lifts at midnight UTC."
+              decision.reason === "per_instance_daily_cap"
+                ? "This instance of the demonstration has reached its cap of live generations for today. The recorded runs still work, and the cap lifts at midnight UTC."
                 : "You have used your live generations for today. The recorded runs still work, and the cap lifts at midnight UTC.",
             limits: decision,
           },
@@ -97,13 +110,36 @@ export async function POST(request: Request) {
       });
     }
 
+    if (action === "edit") {
+      // A reviewer correcting the draft is part of the path, not a detour: the
+      // edit produces a new version and ends the acceptance in force.
+      const edits = (Array.isArray(body.edits) ? body.edits : [])
+        .map((entry) => (entry ?? {}) as Record<string, unknown>)
+        .filter((entry) => NARRATIVE_FIELDS.includes(entry.field as NarrativeField) && typeof entry.text === "string")
+        .map((entry) => ({ field: entry.field as NarrativeField, text: String(entry.text).trim() }))
+        .filter((entry) => entry.text.length > 0);
+      if (edits.length === 0) {
+        return NextResponse.json({ error: "Send at least one field to change." }, { status: 400 });
+      }
+      const proposal = workspace.edit(actorOf(body.actorId), String(body.proposalId ?? ""), edits);
+      return NextResponse.json({
+        proposal,
+        log: workspace.log(ACTORS.dana, LOG_ID),
+        audit: workspace.auditTrail(),
+      });
+    }
+
     if (action === "accept") {
       const proposal = workspace.accept(
         actorOf(body.actorId),
         String(body.proposalId ?? ""),
         String(body.contentHash ?? ""),
       );
-      return NextResponse.json({ proposal, log: workspace.log(ACTORS.dana, LOG_ID) });
+      return NextResponse.json({
+        proposal,
+        log: workspace.log(ACTORS.dana, LOG_ID),
+        audit: workspace.auditTrail(),
+      });
     }
 
     if (action === "apply") {

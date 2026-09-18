@@ -24,21 +24,34 @@ export function assertMayWriteDailyLog(actor: Actor): void {
 }
 
 /**
- * An acceptance is given to one exact draft. Editing the draft afterwards
- * invalidates it, and applying an unaccepted draft is refused by the server,
- * whatever the browser displays.
+ * An acceptance names a proposal, the version of the draft it was given to, and
+ * the exact text of that version. All three have to still hold. Editing the
+ * draft ends the acceptance in force, so going back to a text that was accepted
+ * earlier does not revive it: the version has moved on.
  */
-export function assertAcceptanceBindsDraft(proposal: Proposal): void {
+export function acceptanceBinds(proposal: Proposal): boolean {
   const accepted = proposal.acceptance;
-  const bound = accepted !== undefined && accepted.contentHash === proposal.contentHash; /* mutation target */
-  if (!bound) {
+  // One line, deliberately: it is the whole decision, and it is what the
+  // mutation test neutralises.
+  return accepted !== undefined && accepted.proposalId === proposal.id && accepted.contentVersion === proposal.contentVersion && accepted.contentHash === proposal.contentHash; /* mutation target */
+}
+
+export function assertAcceptanceBindsDraft(proposal: Proposal): void {
+  if (acceptanceBinds(proposal)) return;
+  if (proposal.acceptance !== undefined) {
     throw new Refused(
-      accepted === undefined ? "not_accepted" : "acceptance_is_for_another_version",
-      accepted === undefined
-        ? "This draft has not been accepted."
-        : "This draft changed after it was accepted. It has to be accepted again.",
+      "acceptance_is_for_another_version",
+      "This draft changed after it was accepted. It has to be accepted again.",
     );
   }
+  const ended = proposal.acceptanceHistory.at(-1);
+  if (ended) {
+    throw new Refused(
+      "acceptance_is_for_another_version",
+      `An acceptance was given to version ${ended.contentVersion} and ended when the draft changed. The draft on screen is version ${proposal.contentVersion} and needs its own acceptance.`,
+    );
+  }
+  throw new Refused("not_accepted", "This draft has not been accepted.");
 }
 
 export function assertNotAlreadyApplied(proposal: Proposal): void {

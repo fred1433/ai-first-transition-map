@@ -21,8 +21,9 @@ wrong one.
   refuse, and what an acceptance is bound to.
 - Where the record of proposals, changes and acceptances is kept, and who can read it.
 
-**What it is not**: a platform programme. No public API, no event bus, no evaluation infrastructure is
-required to answer the questions above.
+**What it is not**: a platform programme decided in advance. Whether a public API, an event bus or
+evaluation infrastructure is needed follows from the answers above, and this phase is what establishes
+that.
 
 **Back to the previous behaviour**: nothing shipped, nothing to undo.
 
@@ -39,8 +40,9 @@ required to answer the questions above.
 - The business status of the log is never set by the assisted step.
 
 **What to measure**
+- Total time of the path, corrections and review included, against the time the manual path takes
+  today. Review time on its own would flatter the assisted step by leaving its corrections out.
 - How often a draft is accepted, and how much of it is rewritten first.
-- Time to review, against the time the manual path takes today.
 - Latency and cost per draft.
 - What people say when they turn it off.
 

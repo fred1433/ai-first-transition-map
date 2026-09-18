@@ -42,6 +42,8 @@ next-env.d.ts
 
 # secrets and local material
 .anthropic-key.env
+.anthropic-key-v2.env
+.anthropic-key-v2.limit
 crawl/cache/
 mutation-run/
 screenshots/

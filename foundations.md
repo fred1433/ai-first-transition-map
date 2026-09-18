@@ -2,10 +2,10 @@
 
 The temptation, on a transition of this kind, is to make a platform programme the precondition of the
 first useful step: interfaces, events, permissions, audit, evaluation, all of it before anything is
-tested. That order spends a quarter before anyone learns whether the assisted step helps.
+tested.
 
-The order proposed here is the reverse. The pilot names the foundations it actually needs, and those
-are the only ones on the critical path.
+For this pilot, I would first verify which existing interfaces and controls can be reused. Any
+additional foundation would depend on what Phase 0 establishes.
 
 ## What the public documentation already describes
 
@@ -49,8 +49,8 @@ interfaces and controls.
 | A record of what was proposed, changed and accepted | Otherwise nothing can be reviewed afterwards | Not reviewed |
 | A way to switch it off | Phase 1 has to be reversible without a release | Not reviewed |
 
-## What is deliberately not on the critical path
+## What is not assumed to be on the critical path
 
-A public API, an event bus, a company wide evaluation platform, a model gateway. Each of them may be
-worth building. None of them is needed to find out whether a supervisor accepts a drafted log, and
-none of them should be justified by this pilot.
+A public API, an event bus, a company wide evaluation platform, a model gateway: none of them is
+assumed here, and none of them is ruled out either. Whether any is needed is a Phase 0 answer, and it
+would come from the interfaces and controls that already exist, not from this document.

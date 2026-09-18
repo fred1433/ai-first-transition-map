@@ -18,10 +18,10 @@
         "excerpt": "Under the details of your Daily Logs, you have the ability to enter arrival date and time, departure time and tasks performed. It is important to say that the Tasks performed field is one of the most important to fill.",
         "status": "Documented publicly"
       },
-      "proposedAddition": "An optional draft of the narrative fields from the notes a supervisor already types, every sentence tied to the words it came from, gaps named rather than filled, and an explicit acceptance before anything is written.",
+      "proposedAddition": "An optional draft of the narrative sections from the notes a supervisor already types, every sentence tied to the words it came from, gaps named rather than filled, and an explicit acceptance before anything is written. The demo uses three narrative sections. Their mapping to existing fields and permitted write paths is a Phase 0 check.",
       "whyThisChoice": "The workflow is easy to state, the output can be read in full before it is used, and the action is bounded: three text fields on a form that already exists.",
       "unverifiedDependency": {
-        "text": "Where the notes are captured today, which role would run the draft, and how an assisted write inherits the module permissions already defined.",
+        "text": "Where the notes are captured today, which role would run the draft, how an assisted write inherits the module permissions already defined, and which existing fields the three sections map to.",
         "status": "Not reviewed"
       },
       "wouldAbandonIf": "Site notes are not captured as free text before the fields are filled, or the people who fill the log do not want a review step on their own words.",
@@ -39,12 +39,12 @@
         "status": "Documented publicly"
       },
       "proposedAddition": "Nothing. The draft is refused write access to hours, quantities, equipment and linked records, and is told not to restate them in prose.",
-      "whyThisChoice": "These values are already derived from records. A model that repeats them can only add a second version of a number that was already right.",
+      "whyThisChoice": "Keep structured values on their existing input and linked-record paths. Do not generate replacements.",
       "unverifiedDependency": {
-        "text": "Nothing to verify: this line exists to state what the pilot does not touch.",
-        "status": "Documented publicly"
+        "text": "Isolation of the assisted write from structured fields.",
+        "status": "Not reviewed"
       },
-      "wouldAbandonIf": "Not applicable. This is the boundary, not a proposal.",
+      "wouldAbandonIf": "The pilot stops if that isolation cannot be established. Generating hours or quantities is not the alternative.",
       "measurement": "Observable in the demonstration: the structured side of the record is identical before and after an accepted draft is applied."
     },
     {
@@ -58,13 +58,13 @@
         "excerpt": "In Contractor Foreman, Change Orders are used to document and track any modifications made to the original contract amount.",
         "status": "Documented publicly"
       },
-      "proposedAddition": "Not in the first pilot. Drafting a change order from an observation means qualifying scope, cost and responsibility, and a wrong draft there is expensive in a way a badly worded log is not.",
-      "whyThisChoice": "This is the workflow most often shown in demonstrations and the one with the least room for a first mistake. It is a better second step than a first one.",
+      "proposedAddition": "Defer drafting that could affect contract scope or amount until the approval path and responsible roles have been verified.",
+      "whyThisChoice": "A draft here would have to qualify scope, cost and responsibility, on a record that carries an approval trace. Those are the parts to verify before proposing anything.",
       "unverifiedDependency": {
         "text": "The internal approval path and who is allowed to price a change.",
         "status": "Not reviewed"
       },
-      "wouldAbandonIf": "Revisit once the narrative pilot shows how often accepted drafts are corrected, and only for the wording of a change order, never for its amounts.",
+      "wouldAbandonIf": "The team identifies a strictly editorial case, with its data and approvals already settled, and confirms it comes before the daily log. The order proposed here is a proposal, not a reading of their priorities.",
       "measurement": "No measurement proposed yet. Nothing here is quantified."
     },
     {
@@ -78,8 +78,8 @@
         "excerpt": "A Request for Information (RFI) is used in construction to obtain clarification when plans, drawings, specifications, or agreements contain gaps, conflicts, or missing details.",
         "status": "Documented publicly"
       },
-      "proposedAddition": "Not in the first pilot. A record whose reason to exist is a gap in the documents is the worst place to let a model fill a gap.",
-      "whyThisChoice": "Routing, searching prior answers and drafting a question are plausible later. Drafting the answer itself is not, until the sources it would rely on are known.",
+      "proposedAddition": "Defer answer drafting until the drawings, specifications and prior answers it would cite are identified and accessible.",
+      "whyThisChoice": "Routing, searching prior answers and drafting a question are plausible later. Drafting the answer itself depends on sources that have to be identified first.",
       "unverifiedDependency": {
         "text": "What an answer would have to be grounded in: drawings, specifications, prior answers, and whether those are available to the application.",
         "status": "Not reviewed"
@@ -93,19 +93,19 @@
       "decision": "keep-existing",
       "decisionLabel": "Keep the existing mechanism",
       "documentedBehaviour": {
-        "summary": "Lead traffic in and out of the application is already covered by the published integration, with events on both sides.",
+        "summary": "The published integration can send leads into the application, and the listing shows events and write actions on both sides.",
         "sourceId": "kb-zapier-leads-crm",
         "excerpt": "Yes, the leads sent to the CRM can be sent to Contractor Foreman using Zapier integrations.",
         "status": "Documented publicly"
       },
-      "proposedAddition": "Nothing. The published listing shows seven triggers and two write actions on customers, leads and file uploads, read on 18 September 2026 and not exhaustive because the list paginates.",
-      "whyThisChoice": "Putting a model in a path that already works as a rule engine adds a failure mode and no capability.",
+      "proposedAddition": "Keep the existing integration for structured lead transfers. Verify coverage of the actual inputs and exceptions before proposing an assisted step.",
+      "whyThisChoice": "The documented integration already moves structured leads as a rule engine. What it does not cover has to be established before anything is added to that path.",
       "unverifiedDependency": {
-        "text": "Whether these same events and write actions are usable internally for an assisted step, or whether they exist only for the integration.",
+        "text": "Coverage of the actual inputs and exceptions of the lead workflow today.",
         "status": "Not reviewed"
       },
-      "wouldAbandonIf": "Not applicable. This is a line where the answer is to leave it alone.",
-      "measurement": "Not applicable."
+      "wouldAbandonIf": "Unstructured inputs the workflow needs turn out not to be covered by the existing rules.",
+      "measurement": "No measurement proposed: nothing is added on this line."
     }
   ]
 }

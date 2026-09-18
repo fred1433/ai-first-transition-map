@@ -51,3 +51,24 @@ body {
   line-height: 1.7;
   color: var(--ink-soft);
 }
+
+/* A voluntary opening: a line that says what is behind it, and opens on a click. */
+.disclosure > summary {
+  cursor: pointer;
+  list-style: none;
+  color: var(--bronze);
+  font-size: 14px;
+}
+
+.disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure > summary::after {
+  content: " +";
+  font-variant-numeric: tabular-nums;
+}
+
+.disclosure[open] > summary::after {
+  content: " -";
+}

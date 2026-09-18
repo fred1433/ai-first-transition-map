@@ -37,17 +37,60 @@ export interface ProvenanceQuote {
   quote: string;
 }
 
-export interface ProposedField {
-  field: NarrativeField;
+export interface Withheld {
+  reason: "no_provenance" | "quote_not_in_notes" | "quantity_not_in_notes";
+  detail: string;
+}
+
+/**
+ * One sentence of a draft with the excerpts it rests on. A model often answers
+ * with one entry per sentence; the form has one field. The texts are joined for
+ * the record, the excerpts stay attached to the sentence that cited them.
+ */
+export interface ProposedPart {
   text: string;
   provenance: ProvenanceQuote[];
+  withheld?: Withheld;
+}
+
+export interface ProposedField {
+  field: NarrativeField;
+  /** The sentences joined, which is what an accepted draft writes. */
+  text: string;
+  parts: ProposedPart[];
+  /** Every excerpt of every sentence, kept for display of the whole field. */
+  provenance: ProvenanceQuote[];
   /** Set when a check refused the field. A withheld field is never applied. */
-  withheld?: { reason: string; detail: string };
+  withheld?: Withheld;
 }
 
 export interface MissingInformation {
   topic: string;
   why: string;
+}
+
+export interface Acceptance {
+  by: string;
+  at: string;
+  /** An acceptance names a proposal, a version and the exact text of it. */
+  proposalId: string;
+  contentVersion: number;
+  contentHash: string;
+  /** Set when a later edit ended this acceptance. */
+  supersededBy?: number;
+}
+
+export interface DraftVersion {
+  contentVersion: number;
+  contentHash: string;
+  at: string;
+  fields: { field: NarrativeField; text: string }[];
+}
+
+export interface FieldChange {
+  field: NarrativeField;
+  from: string;
+  to: string;
 }
 
 export interface Proposal {
@@ -57,8 +100,10 @@ export interface Proposal {
   logId: string;
   /** Increases on every edit of the draft. */
   contentVersion: number;
-  /** What an acceptance is bound to. */
+  /** What an acceptance is bound to, together with the version above. */
   contentHash: string;
+  /** Immutable reference to the notes the draft was made from. */
+  sourceNotesHash: string;
   fields: ProposedField[];
   missing: MissingInformation[];
   /** What the draft deliberately does not state. */
@@ -67,12 +112,12 @@ export interface Proposal {
   createdAt: string;
   /** Keys the model returned that the contract does not allow. Kept as evidence. */
   rejectedKeys: string[];
-  acceptance?: {
-    by: string;
-    at: string;
-    /** The exact draft that was accepted. */
-    contentHash: string;
-  };
+  /** Every version proposed, so a hash is not the only trace of a text. */
+  versions: DraftVersion[];
+  /** The acceptance in force, if the draft has not changed since. */
+  acceptance?: Acceptance;
+  /** Acceptances that an edit ended. Kept, never deleted. */
+  acceptanceHistory: Acceptance[];
   appliedAt?: string;
 }
 
@@ -85,6 +130,14 @@ export interface AuditEntry {
   logId: string;
   contentVersion: number;
   contentHash: string;
+  /** The notes the draft came from, the same value on every entry of a proposal. */
+  sourceNotesHash: string;
+  /** The text of every field at this point, so the trail gives back the draft. */
+  snapshot?: { field: NarrativeField; text: string }[];
+  /** What an edit changed, field by field. */
+  changes?: FieldChange[];
+  /** The version an acceptance named, carried on accept and on apply. */
+  acceptedVersion?: number;
   outcome: "recorded" | "refused";
   reason?: string;
   logVersionBefore: number;

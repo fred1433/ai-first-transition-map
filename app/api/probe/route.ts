@@ -1,7 +1,8 @@
 /**
- * Runs one of the refusal checks on demand. The function called here is the
- * same one the test suite calls in continuous integration, so what the page
- * shows and what the tests assert cannot drift apart.
+ * Runs one of the seven control scenarios on demand. The function called here is
+ * the one the test suite calls in continuous integration, and it returns one
+ * verdict covering both the outcome of the call and the state invariants of the
+ * record, so the page reports what the scenario actually did.
  */
 import { NextResponse } from "next/server";
 import { PROBE_IDS, runProbe } from "@/lib/prototype/probes";
