@@ -1,0 +1,9 @@
+# How do I add an Incident in a Daily Log?
+Source: https://kb.contractorforeman.com/knowledge-base/how-do-i-add-an-incident-in-a-daily-log/
+Read at: 2026-09-18T12:53:57.380Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+To add an Incident, open the Daily Log and scroll down to the bottom to Incidents & Accidents. Once here, click on the plus incident button to create a new one.
+
+A pop-up window will appear on the right side of the screen and you just need to populate the required fields noted with an asterisk. As best practice we recommend populating all the fields. Once done, click on save and the incident will be shown under Incidents & Accidents section of your daily log.

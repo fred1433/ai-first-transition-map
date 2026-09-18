@@ -1,0 +1,213 @@
+# Basics of Change Orders
+Source: https://kb.contractorforeman.com/knowledge-base/basics-of-change-orders/
+Read at: 2026-09-18T12:54:51.339Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+How to Create a Change Order
+
+Purpose
+
+To create a Change Order in Contractor Foreman.
+
+Background
+
+In Contractor Foreman, Change Orders are used to document and track any modifications made to the original contract amount.
+They help you monitor who requested and approved the change, contractors involved, schedule delays, and any related photos or files.
+
+Points to Remember
+
+Required fields are marked with an asterisk (*).
+
+To save your work, click the blue “Save” button at the bottom of the page.
+
+To edit a record, click the green pencil icon in the upper right corner.
+
+Only users with Admin Rights or those granted specific permissions can delete Change Orders.
+
+To delete a Change Order:
+
+Click the Action Items (three-dot icon) in the upper-right corner, or
+
+Click the Action dropdown menu at the bottom right of the screen.
+
+Steps to Create a New Change Order
+
+Navigate to the Main Menu.
+
+Click on the Change Orders module (under Financials).
+
+Click the blue “+” icon on the left-hand side.
+
+Enter the following information:
+
+Field
+Description
+
+Project*
+Select the project this Change Order belongs to.
+
+Subject*
+Enter a short subject for this Change Order.
+
+Requested By
+Select from the dropdown list.
+
+Approved By
+Select from the dropdown list.
+
+Billed To
+Specify if different from the Customer.
+
+Original Estimate
+Select from the dropdown.
+
+CO #
+Your internal Change Order numbering system.
+
+Date
+Date the Change Order is issued.
+
+Billing Status
+Select from the dropdown.
+
+Customer
+Automatically filled when selecting the Project.
+
+Customer CO #
+The customer’s Change Order number, if applicable.
+
+Time / Days Delay
+Select from dropdown if applicable.
+
+Description
+Enter a description of the work related to this Change Order.
+
+Add Item to Change Order
+Use this dropdown to add items. See the next section for details.
+
+Add Attachment
+Upload photos or files. (On mobile, this is the camera icon.)
+
+No Cost Change Order
+Check this box if the Change Order will not affect the total contract amount.
+
+Save Change Order as Template
+Check this box to save the Change Order as a reusable template.
+
+1. Import from Cost Items Database
+
+Use the Cost Items Database (CIDB) to add existing cost items to the Change Order. The database can include materials, labor, equipment, subcontractor, and other costs, along with their associated pricing.
+
+Select the items you want to include in the Change Order, then add them to the Change Order.
+
+2. Import from Estimate
+
+Import items directly from the Original Estimate for the project.
+A pop-up window will display the estimate items. Select the items you wish to include.
+
+3. Import from Change Order Requests
+
+Import items from existing Change Order Requests (CORs) already entered in the system.
+Select the COR from the dropdown and check the desired items.
+
+4. Import from Change Order Template
+
+Use a previously saved Change Order Template.
+Select the template from the dropdown and choose which items to include.
+
+5. Add Manual Change Order Item
+
+To manually create a new line item, select Add Manual Change Order Item.
+A pop-up window will appear. Complete the required fields.
+
+Item Fields
+
+Field
+Description
+
+Item Name*
+Description of the line item (e.g., “Concrete” or “1500 BF of 2×6 DF”).
+
+Item Type*
+Select one of the five MLESO categories:
+
+• Material
+
+• Labor
+
+• Equipment
+
+• Subcontractor
+
+• Other
+
+Assigned To
+Assign a Vendor or Subcontractor, if applicable.
+
+Quantity / Unit
+Enter the amount and unit of measure (e.g., 1500 BF or 1 LS).
+
+Unit Cost
+Cost per unit.
+
+Markup (%) / Total ($)
+Add markup as a percentage (green field) or enter a total sale amount (blue field).
+
+Total
+Automatically calculated.
+
+Cost Code
+Select a cost code to enable detailed job costing.
+
+Description
+Add detailed information, inclusions, or exclusions.
+
+Internal Note
+Add internal comments or references.
+
+Collect Tax on this Item?
+Check this box to apply the project’s tax rate.
+
+Add Discount
+Reduce the total by the entered amount.
+
+Apply Automatic/Bulk Markup
+Apply a markup to all line items at once.
+
+Change Order Status
+
+Each Change Order status represents a different stage in the process and may trigger automations that affect other modules in Contractor Foreman.
+
+Status
+Description
+
+On Hold / Open
+The Change Order can still be revised. The total amount is not yet included in the project total.
+
+Pending Approval
+Automatically assigned when the Change Order is sent to the customer for review.
+
+Unbilled / Approved
+Once approved by the customer, the Change Order becomes part of the Total Project Amount, Schedule of Values, and Job Cost Report.
+
+Billed
+Applied when the Change Order amount has been fully invoiced to the client.
+
+To Submit for Approval:
+
+Click the three-dot icon.
+
+Select View/Email PDF.
+
+Choose a template.
+
+Click Submit for Approval.
+
+Additional Tips
+
+Review all details before sending a Change Order for approval.
+
+Use templates and the CIDB to save time when creating future Change Orders.
+
+Use internal notes to document reasoning or clarifications.

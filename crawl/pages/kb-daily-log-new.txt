@@ -1,0 +1,71 @@
+# Adding a New Daily Log
+Source: https://kb.contractorforeman.com/knowledge-base/adding-a-new-daily-log/
+Read at: 2026-09-18T12:53:03.325Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+Daily Logs
+
+Daily Logs are an important document to have filled out every day for each ongoing project. Contractor Foreman provides an easy method for tracking daily activities on the jobsite with Daily Logs. You can log weather, Visitors, Task accomplished, materials used and more.
+
+Daily logs are concise, documented records that capture essential details of the day’s work on a construction site. They typically include information about crew activities, weather conditions, equipment usage, materials delivered or used, any incidents or safety issues, and a summary of the progress made. These logs are often filled out by site superintendents or project managers and are stored within the Daily Logs module in Contractor Foreman.
+
+Using daily logs creates a strong, transparent foundation for construction project management, leading to better outcomes and fewer misunderstandings.
+
+How to create a new daily log?
+
+Go to the Daily Logs Module, then click on the plus icon located at the top right hand of the screen.
+
+A new window will pop up on the right side and we need to fill all the required fields, which are marked with an asterisk (*.) Project, Arrival Date and Arrival Time. Once that is done, you can click on the blue button “Create Daily Log”.
+
+The Daily Log has 6 tabs that allow you to sort out all the information related to your jobsite: Details, People, Material, Equipment, Notes and Files.
+
+Details
+
+Under the details of your Daily Logs, you have the ability to enter arrival date and time, departure time and tasks performed. It is important to say that the Tasks performed field is one of the most important to fill. This will be shown in our Project module so we can have a quick view of all the tasks performed by our employees in a chronological order.
+
+Tracking weather and delays in daily logs provides a clear record of conditions that may impact construction activities. This helps explain delays or alterations in the work schedule due to weather, protects against claims related to weather-caused delays, and supports accurate project planning and forecasting. It’s also valuable for safety planning, as extreme weather can pose risks to crew members and equipment.
+
+Tracking jobsite conditions and safety incidents is essential for maintaining a safe and efficient work environment. Recording these details helps identify and mitigate potential hazards, reducing the likelihood of future accidents. Documenting incidents also provides critical information for investigations and can reveal patterns that guide safety improvements. Additionally, this information supports compliance with safety regulations, protects the company in case of liability issues, and promotes a culture of safety that enhances worker morale and productivity.
+
+**The Daily Logs module interacts with other modules and speaking about the incidents, when you create an incident in the “Incidents Module”, it will be shown in your Daily Log. How? both need to match date and project.
+
+People
+
+Under the people tab or section of our Daily Logs you have the ability to track who was on site, whether they were your own employees, visitors such as customers, inspectors, architects and even subcontractors. This tracking process ensures accountability and coordination across all teams involved in a project. This information provides a clear record of who was present each day, which is useful for verifying work progress, managing labor costs, and allocating resources efficiently. In case of incidents, this record helps in determining who witnessed or was involved. Furthermore, having accurate attendance data supports compliance with contractual obligations and safety protocols, enhancing overall site security and accountability.
+
+*** As noted before, the Daily Logs interact with other modules and the People Tab/Section is not the exception to the rule. When our employees use the Time Cards, their time will be reflected and shown in the “Employee Time Cards” field. Same applies for Subcontractors using the Time Cards. Remember that for subcontractors or employees to clock in and out, they need to be users of the Contractor Foreman.
+
+To learn more about adding manually subcontractors and employees to your daily logs, read this article “How to add employees to a Daily Log?”
+
+Materials
+
+Adding notes to materials provides context, such as usage details or specific issues, helping teams make informed decisions to improve the use of these materials in the future or within the same project.
+
+Tracking materials used on-site ensures that resources are efficiently allocated, preventing shortages or delays by keeping material usage aligned with project demands.
+
+Tracking materials delivered alongside POs ensures accurate order fulfillment, verifies correct quantities and specifications, and facilitates quick resolution of discrepancies with suppliers. The Materials Tab/Section of the daily log interacts with approved POs, that is why it is important to have approved POs in order to use the function “Materials Items Delivered”
+
+Equipment
+
+Equipment notes and logs provide a clear record of equipment condition, usage, and maintenance needs, helping prevent breakdowns, extend equipment life, and improve safety and efficiency on-site.
+
+When you create an “Equipment Log” in the Equipment logs module, all that information will be shown in the Daily Logs.
+
+Another function found in the Equipment tab/section is the “Equipment Items Used”. This function allows you to use the “equipment time cards”, for every hour register with this feature, it will impact the financials of your project as actual cost for equipment. Make sure you have entered in your estimate equipment items with hourly rates.
+
+Notes
+
+Keeping records of notes, inspections, and safety meetings enhances site safety and compliance by documenting issues, corrective actions, and safety protocols. This proactive approach reduces accident risks, promotes a culture of safety, and provides valuable reference material to improve ongoing practices and meet regulatory standards.
+
+Notice that in this tab/section, you can add Notes (from the Notes Module), Project Notes (found in the “documents” of the Project), Jobsite Inspections (from the Inspections Module) and Safety Meetings (from the Safety Meetings Module). It does not matter if you decide to add a record from within the Daily Log or from any of the before mentioned modules, all the information will also be found in the Daily log.
+
+*** Reminder, the project and date need to match in the Daily Log and record in question (ie, Safety Meetings).
+
+Files
+
+Under the files you can take photos and upload them into this section. You can open your camera and take photos (if you are using the App) or you can just simply upload the pictures later.
+
+We recommend taking the pictures directly to your phone and when you have a stable connection to the internet, to upload the photos taken on site.
+
+Also, you can read this article to learn how to upload a photo?or watch the video below.

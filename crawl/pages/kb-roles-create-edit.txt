@@ -1,0 +1,51 @@
+# What are Roles and how to create and edit Roles?
+Source: https://kb.contractorforeman.com/knowledge-base/what-are-roles-and-how-to-create-and-edit-roles/
+Read at: 2026-09-18T12:54:38.144Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+Managing roles and security settings in Contractor Foreman is crucial for maintaining the organization, security, and efficiency of your team. Roles allow you to control what different types of employees can access and modify within the system, ensuring that only the right people have permission to view or edit certain features and data. This not only improves data security but also streamlines workflows by limiting access to features based on job responsibilities.
+
+What are Roles?
+
+Roles in Contractor Foreman define what features or parts of the system a specific type of user can access. You can assign roles to various groups or individual employees, depending on their responsibilities. For example, common roles might include:
+
+Administrator: Full access to all features and settings, able to manage the entire system.
+
+Technician: Limited access; only able to view or edit items related to specific tasks.
+
+Estimator: Focused on estimates and financial data without access to other unrelated features.
+
+Project Manager: Manages the project workflow, including task assignments, but might not need access to financials or settings.
+
+Contractor Foreman comes with several preset/default roles to help you get started, but you also have the flexibility to create custom roles to fit the unique structure of your team.
+
+Where to find Roles Settings?
+
+Roles settings are located in the System Settings of Contractor Foreman. Once you are in the Settings module, you will need to access the Roles where roles are created and managed.
+
+How to add new roles and modify existing roles.
+
+To add a new role, click the Add Role + button, and then give a name to the role and adjust the permissions of that role in the Edit Screen.
+
+To modify existing roles, when you are in the Roles settings, you’ll see a list of existing roles. click the Edit button (represented by a green pencil) to enter modify any role you want to modify, and it will take you to the Edit Screen of the roles.
+
+The Edit Screen allows you to modify various aspects of the role:
+
+Top Section: Here, you can rename the role, change its status (e.g., Active or Inactive), and add any notes or descriptions that clarify the role’s purpose within your team.
+
+Permissions Section: This section lists every feature and menu item available in Contractor Foreman. For each feature, you can set one of the following access levels:
+
+No Access: The user assigned to this role will not be able to view or interact with the feature. It will be hidden from their view in the menu.
+
+Full Access – All Data: The user can view, modify, and interact with all data within that module.
+
+Full Access – Own Data: The user can view, modify, and interact with data that’s related to that user, and create own data within that module.
+
+Read Only: The user can view all data within that module but will not be able to make any changes.
+
+Click on the desired access level for each module as per your requirements. If you have certain roles that only need access to limited features (e.g., Estimators), you can disable irrelevant features like Daily Logs or User Settings to simplify their interface and reduce the potential for mistakes.
+
+After making the necessary changes to the role’s permissions, scroll to the bottom of the screen and click the Save button to save your changes. Now you’ll be able to use the roles you created or modified in the directory while setting up user accounts for your employees or contractors.
+
+We have a great video here regarding Roles: Roles Training Video

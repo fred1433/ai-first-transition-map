@@ -1,0 +1,23 @@
+{
+  "scenarioId": "invented-figures",
+  "origin": "constructed",
+  "recordedAt": "2026-09-18",
+  "model": "not generated",
+  "note": "Written by hand, on purpose. A plausible draft that states a duration and a headcount the notes never gave. It is kept so the provenance and quantity checks can be watched holding a field back.",
+  "raw": {
+    "fields": [
+      {
+        "field": "workPerformed",
+        "text": "Tile setting in unit B stopped when rain came in after lunch.",
+        "provenance": [{ "quote": "rain after lunch, tile setting stopped in unit b" }]
+      },
+      {
+        "field": "notes",
+        "text": "The rain cost about two hours of work, and three inspectors signed off on the rough-in for unit A.",
+        "provenance": [{ "quote": "inspector came by in the morning, signed off on the rough-in for unit a" }]
+      }
+    ],
+    "missing": [],
+    "refusals": []
+  }
+}

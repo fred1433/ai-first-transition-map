@@ -1,0 +1,15 @@
+# How do I update the Daily Log status ?
+Source: https://kb.contractorforeman.com/knowledge-base/how-do-i-update-the-daily-log-status/
+Read at: 2026-09-18T12:53:19.614Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+To update the Daily Log status, go to the Daily Log Module and open the daily log in question.
+
+Once there, right below the title of the Project you will see the status of the Daily Log. Click on it to see a drop down menu and pick the status of your preference.
+
+In Progress: the Daily Log is still open and in use
+
+Deferred: Started working on the Daily Log and had to postpone it
+
+Complete: No more notes need to be added to the Daily Log

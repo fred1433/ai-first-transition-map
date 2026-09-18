@@ -1,0 +1,83 @@
+# How do I submit a Change Order for Approval?
+Source: https://kb.contractorforeman.com/knowledge-base/how-do-i-submit-a-change-order-for-approval/
+Read at: 2026-09-18T12:55:05.167Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+Purpose
+
+To send a Change Order to a customer or other recipient for review and approval in Contractor Foreman.
+
+Background
+
+Once a Change Order has been created and all required details and items have been added, you can generate a PDF and email it to the appropriate recipient for review.
+
+The recipient can review the Change Order details and provide approval according to your organization’s workflow.
+
+Step 1: Open the Change Order
+
+Navigate to the Change Orders module.
+
+Locate and open the Change Order you want to submit for approval.
+
+Review the Change Order details, items, amount, and other information to make sure everything is correct.
+
+Step 2: Open the Change Order PDF
+
+Click the three-dot icon in the upper-right corner of the Change Order.
+
+Select View/Email PDF.
+
+A File Preview window will open.
+
+Step 3: Select a PDF Template
+
+In the File Preview window, locate the Templates dropdown.
+
+Select the template you want to use for the Change Order.
+
+Review the generated PDF to make sure it displays the information you want the recipient to see.
+
+The available templates may vary depending on your account’s settings.
+
+Note: Choose a template that includes the appropriate Change Order details and approval information for your workflow.
+
+Step 4: Email the Change Order
+
+In the File Preview window, click the Email icon.
+
+The Email Selection Wizard will open.
+
+Select the appropriate recipient category, such as Customers, Contractors, Vendors, Employees, or another available contact type.
+
+Select the person who should receive the Change Order.
+
+Review the Currently Selected recipients on the right side of the screen.
+
+If needed, keep the following options selected:
+
+Save a copy of the PDF to Change Orders folder
+
+CC a Copy to My Email
+
+Click Next to continue.
+
+Step 5: Complete the Approval Process
+
+After the Change Order has been sent, the recipient can review the document and respond according to the approval process configured for the Change Order.
+
+The Change Order status can then be updated as the approval process progresses.
+
+Important: The exact approval and status-update options may depend on your account settings, permissions, and workflow.
+
+Additional Tips
+
+Review the Change Order carefully before sending it.
+
+Make sure the correct PDF template is selected.
+
+Confirm that the correct recipient is selected in the Email Selection Wizard.
+
+Review the generated PDF before emailing it.
+
+Keep a copy of the PDF in the Change Orders folder when needed for record keeping

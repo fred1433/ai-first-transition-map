@@ -1,0 +1,69 @@
+# Adding New RFI (Request for Information)
+Source: https://kb.contractorforeman.com/knowledge-base/adding-new-rfi-request-for-information/
+Read at: 2026-09-18T12:55:36.311Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+Adding an RFI Notice
+
+Purpose
+
+A Request for Information (RFI) is used to formally ask for clarification, direction, or additional details related to project documents, plans, or specifications. RFIs help ensure that the work proceeds accurately and without assumption when project scope or design elements are unclear. It creates a clear, traceable communication trail between the contractor, subcontractor, architect, or engineer.
+
+Why Use an RFI Notice?
+
+RFIs ensure that any ambiguities, conflicts, or missing details in project documents are clarified before work proceeds. By submitting an RFI, contractors avoid making assumptions that could lead to costly errors, rework, or delays. It also creates a clear, time-stamped record of questions and responses, protecting all parties if disputes arise later in the project.
+
+Steps to Add an RFI Notice
+
+Navigate to the Main Menu
+
+Click on RFI & Notices
+
+From the submenu, select RFI & Notice
+
+Click:
+
+RFI (Request for Information)
+
+Fill Out the RFI Notice Form
+
+The form includes several important fields:
+
+Project*:
+
+Select the relevant project from the dropdown list.
+
+Title*:
+
+Enter the title.
+
+Date/Time*:
+
+Enter the date and time when the Compliance Notice is being issued.
+
+To*:
+
+Click the View/Select button to choose the recipient. These contacts will appear on the PDF version and any emails sent.
+
+RFI*:
+
+Type the RFI number.
+
+Information Requested*:
+
+Enter the information request.
+
+Final Steps
+
+Click Submit to save the RFI Notice.
+
+Best Practices
+
+Always include photo documentation to support your description.
+
+Be as specific as possible in the issue and resolution fields to ensure clear communication.
+
+Use consistent naming for “From” and “To” fields for better tracking across reports.
+
+Archive notices only after the issue has been resolved and verified.

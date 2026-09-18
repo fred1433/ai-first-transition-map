@@ -1,0 +1,41 @@
+# Updated Roles and Permissions
+Source: https://kb.contractorforeman.com/knowledge-base/updated-roles-and-permissions/
+Read at: 2026-09-18T12:54:25.965Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+Updates to Roles and Permissions
+
+As part of our ongoing commitment to improving user control and clarity, the latest beta release includes several important enhancements to the Roles and Permissions functionality within Contractor Foreman. These changes are now live in the Beta environment and are ready for testing.
+
+Overview of Key Changes
+
+1. Clarified Enable/Disable Functionality The process for enabling or disabling modules at the company level has been redesigned for better usability. A new screen layout presents all modules in a categorized grid format (e.g., Financials, People, Project Management), allowing administrators to easily manage which features are active. Each module now includes a brief description to help users understand its function—for example:
+
+Invoices: Keep on track with your accounts receivable
+
+Calendar: A streamlined calendar system for scheduling
+
+Purchase Orders: Track vendor and supplier costs efficiently
+
+These descriptions are designed to help administrators make informed decisions about which features to activate or disable for the organization. 2. 2. Improved In-App Guidance
+
+Text within the Enable/Disable interface has been rewritten for clarity. The updated messaging now explains that Contractor Foreman allows organizations to selectively activate modules based on operational needs. Administrators can start with only a few modules and expand access over time. For example: “Contractor Foreman gives you the flexibility to choose which features to activate now and which to save for later. If you plan to use just a few modules initially, start with those. You can easily enable or disable modules anytime by navigating to the Enable/Disable option in the main menu.”
+
+3. Granular Role-Based Access Control For situations where a module should remain enabled at the company level but restricted for specific users, the Roles and Permissions system has been updated accordingly. Administrators may:
+
+Enable a module globally
+
+Assign No Access to that module within a specific role in the Roles and Permissions page
+
+Apply the restricted role to users via the Directory
+
+This allows precise control over which users can access specific functionality while maintaining overall module availability.
+
+4. Jump Links for Easier Navigation
+
+New jump links have been embedded directly into the interface. These links allow users to quickly navigate to the Roles and Permissions and Directory sections without having to manually search through the menu. This improves workflow efficiency and user experience.
+
+5. Refined Full Access Behavior
+
+Users with full system access will no longer encounter disabled or greyed-out features due to privilege inconsistencies. The system has been adjusted to provide a more consistent and predictable experience for users with administrative roles.

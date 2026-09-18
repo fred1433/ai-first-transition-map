@@ -1,0 +1,111 @@
+{
+  "title": "Workflows examined",
+  "note": "Five workflows, chosen because a decision had to be taken on each one. This is not an inventory of the product: the pages read are listed in crawl/manifest.json and nothing here describes the internals of the application.",
+  "statusVocabulary": {
+    "Documented publicly": "Stated in a page listed in the manifest. A documented behaviour is not a tested implementation.",
+    "Not found in reviewed sources": "Looked for in the pages that were read, not found there. It may exist elsewhere.",
+    "Not reviewed": "Outside what public pages can show. It would be answered by the product and engineering teams."
+  },
+  "lines": [
+    {
+      "id": "daily-log-narrative",
+      "workflow": "Daily log, narrative fields",
+      "decision": "proposed-pilot",
+      "decisionLabel": "Proposed pilot",
+      "documentedBehaviour": {
+        "summary": "The daily log carries typed narrative fields, and the documentation singles one of them out as the one that matters most.",
+        "sourceId": "kb-daily-log-new",
+        "excerpt": "Under the details of your Daily Logs, you have the ability to enter arrival date and time, departure time and tasks performed. It is important to say that the Tasks performed field is one of the most important to fill.",
+        "status": "Documented publicly"
+      },
+      "proposedAddition": "An optional draft of the narrative fields from the notes a supervisor already types, every sentence tied to the words it came from, gaps named rather than filled, and an explicit acceptance before anything is written.",
+      "whyThisChoice": "The workflow is easy to state, the output can be read in full before it is used, and the action is bounded: three text fields on a form that already exists.",
+      "unverifiedDependency": {
+        "text": "Where the notes are captured today, which role would run the draft, and how an assisted write inherits the module permissions already defined.",
+        "status": "Not reviewed"
+      },
+      "wouldAbandonIf": "Site notes are not captured as free text before the fields are filled, or the people who fill the log do not want a review step on their own words.",
+      "measurement": "Hypothesis: reduce the rewriting of site notes. To verify on real cases by measuring total time, review and corrections included."
+    },
+    {
+      "id": "daily-log-structured",
+      "workflow": "Hours, equipment and linked records inside the same log",
+      "decision": "keep-existing",
+      "decisionLabel": "Keep the existing mechanism",
+      "documentedBehaviour": {
+        "summary": "Hours reach the daily log from time cards by matching project and date, without anyone retyping them.",
+        "sourceId": "kb-daily-log-timecard",
+        "excerpt": "The Time Cards are directly associated with the Daily Logs and in order for us to see them there, we must make sure that the Time Cards are entered to the same project on the same date.",
+        "status": "Documented publicly"
+      },
+      "proposedAddition": "Nothing. The draft is refused write access to hours, quantities, equipment and linked records, and is told not to restate them in prose.",
+      "whyThisChoice": "These values are already derived from records. A model that repeats them can only add a second version of a number that was already right.",
+      "unverifiedDependency": {
+        "text": "Nothing to verify: this line exists to state what the pilot does not touch.",
+        "status": "Documented publicly"
+      },
+      "wouldAbandonIf": "Not applicable. This is the boundary, not a proposal.",
+      "measurement": "Observable in the demonstration: the structured side of the record is identical before and after an accepted draft is applied."
+    },
+    {
+      "id": "change-orders",
+      "workflow": "Change orders",
+      "decision": "deferred",
+      "decisionLabel": "Deferred",
+      "documentedBehaviour": {
+        "summary": "A change order is the record that carries a modification of the contract amount and the trace of who asked for it and who approved it.",
+        "sourceId": "kb-change-order-basics",
+        "excerpt": "In Contractor Foreman, Change Orders are used to document and track any modifications made to the original contract amount.",
+        "status": "Documented publicly"
+      },
+      "proposedAddition": "Not in the first pilot. Drafting a change order from an observation means qualifying scope, cost and responsibility, and a wrong draft there is expensive in a way a badly worded log is not.",
+      "whyThisChoice": "This is the workflow most often shown in demonstrations and the one with the least room for a first mistake. It is a better second step than a first one.",
+      "unverifiedDependency": {
+        "text": "The internal approval path and who is allowed to price a change.",
+        "status": "Not reviewed"
+      },
+      "wouldAbandonIf": "Revisit once the narrative pilot shows how often accepted drafts are corrected, and only for the wording of a change order, never for its amounts.",
+      "measurement": "No measurement proposed yet. Nothing here is quantified."
+    },
+    {
+      "id": "rfi-answers",
+      "workflow": "Answers to requests for information",
+      "decision": "deferred",
+      "decisionLabel": "Deferred",
+      "documentedBehaviour": {
+        "summary": "The purpose of the record is to obtain clarification where the documents are silent or contradictory.",
+        "sourceId": "kb-rfi-purpose",
+        "excerpt": "A Request for Information (RFI) is used in construction to obtain clarification when plans, drawings, specifications, or agreements contain gaps, conflicts, or missing details.",
+        "status": "Documented publicly"
+      },
+      "proposedAddition": "Not in the first pilot. A record whose reason to exist is a gap in the documents is the worst place to let a model fill a gap.",
+      "whyThisChoice": "Routing, searching prior answers and drafting a question are plausible later. Drafting the answer itself is not, until the sources it would rely on are known.",
+      "unverifiedDependency": {
+        "text": "What an answer would have to be grounded in: drawings, specifications, prior answers, and whether those are available to the application.",
+        "status": "Not reviewed"
+      },
+      "wouldAbandonIf": "Stays deferred as long as the grounding sources are not identified and reachable.",
+      "measurement": "No measurement proposed yet."
+    },
+    {
+      "id": "lead-routing",
+      "workflow": "Leads arriving from other systems",
+      "decision": "keep-existing",
+      "decisionLabel": "Keep the existing mechanism",
+      "documentedBehaviour": {
+        "summary": "Lead traffic in and out of the application is already covered by the published integration, with events on both sides.",
+        "sourceId": "kb-zapier-leads-crm",
+        "excerpt": "Yes, the leads sent to the CRM can be sent to Contractor Foreman using Zapier integrations.",
+        "status": "Documented publicly"
+      },
+      "proposedAddition": "Nothing. The published listing shows seven triggers and two write actions on customers, leads and file uploads, read on 18 September 2026 and not exhaustive because the list paginates.",
+      "whyThisChoice": "Putting a model in a path that already works as a rule engine adds a failure mode and no capability.",
+      "unverifiedDependency": {
+        "text": "Whether these same events and write actions are usable internally for an assisted step, or whether they exist only for the integration.",
+        "status": "Not reviewed"
+      },
+      "wouldAbandonIf": "Not applicable. This is a line where the answer is to leave it alone.",
+      "measurement": "Not applicable."
+    }
+  ]
+}

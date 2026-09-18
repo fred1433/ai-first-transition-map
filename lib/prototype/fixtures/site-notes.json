@@ -1,0 +1,91 @@
+{
+  "scenarioId": "site-notes",
+  "origin": "model",
+  "recordedAt": "2026-09-18",
+  "model": "claude-sonnet-5",
+  "note": "Returned by the model on 18 September 2026 for the notes of this scenario, kept word for word. Replaying it calls nothing.",
+  "raw": {
+    "fields": [
+      {
+        "field": "workPerformed",
+        "text": "Tile setting stopped in unit b.",
+        "provenance": [
+          {
+            "quote": "tile setting stopped in unit b"
+          }
+        ]
+      },
+      {
+        "field": "workPerformed",
+        "text": "Inspector came by in the morning and signed off on the rough-in for unit a.",
+        "provenance": [
+          {
+            "quote": "inspector came by in the morning"
+          },
+          {
+            "quote": "signed off on the rough-in for unit a"
+          }
+        ]
+      },
+      {
+        "field": "workPerformed",
+        "text": "Two guys from the drywall crew showed up, materials not delivered yet.",
+        "provenance": [
+          {
+            "quote": "two guys from the drywall crew showed up, materials not delivered yet"
+          }
+        ]
+      },
+      {
+        "field": "weather",
+        "text": "Rain after lunch.",
+        "provenance": [
+          {
+            "quote": "rain after lunch"
+          }
+        ]
+      },
+      {
+        "field": "notes",
+        "text": "Generator running rough again, asked mike to look at it tomorrow.",
+        "provenance": [
+          {
+            "quote": "generator running rough again, asked mike to look at it tomorrow"
+          }
+        ]
+      }
+    ],
+    "missing": [
+      {
+        "topic": "Duration of rain delay",
+        "why": "Notes state rain occurred after lunch and tile setting stopped but do not give a time or duration for the delay."
+      },
+      {
+        "topic": "Whether drywall crew performed any work",
+        "why": "Notes state two guys showed up but materials were not delivered, so it is unclear if any work was done by this crew."
+      },
+      {
+        "topic": "Headcount and crew assignments",
+        "why": "Notes mention 'two guys' but no full crew counts or trade assignments are given for the day."
+      },
+      {
+        "topic": "Inspection outcome details",
+        "why": "Notes state the rough-in for unit a was signed off, but no inspection report number or scope details are given."
+      },
+      {
+        "topic": "Generator repair status",
+        "why": "Notes state mike was asked to look at it tomorrow, but no confirmation of the issue's cause or current operational impact is given."
+      },
+      {
+        "topic": "Status of unit b tile work resumption",
+        "why": "Notes do not state whether or when tile setting resumed after the rain stopped it."
+      }
+    ],
+    "refusals": [
+      "Did not state a time of day for when the inspector arrived beyond 'in the morning' as written, and did not infer an exact hour.",
+      "Did not state a duration for the rain or the tile work stoppage since the notes give no time span.",
+      "Did not state that the drywall crew performed work, since the notes only say they showed up and materials were not delivered.",
+      "Did not state a cause, cost, or responsibility for the generator issue beyond what was written."
+    ]
+  }
+}

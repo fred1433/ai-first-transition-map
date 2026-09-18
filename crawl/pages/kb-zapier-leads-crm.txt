@@ -1,0 +1,9 @@
+# Can I send Leads to my CRM or email system using Zapier?
+Source: https://kb.contractorforeman.com/knowledge-base/can-i-send-leads-to-my-crm-or-email-system-using-zapier/
+Read at: 2026-09-18T12:56:03.319Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+Yes, the leads sent to the CRM can be sent to Contractor Foreman using Zapier integrations. To set it up, you can go to the Menu>Settings and Support>Settings>System Settings>Integrations and click on Zapier to get started.
+
+After you click on the link, it will take you to Zapier to log in and start exploring your options.

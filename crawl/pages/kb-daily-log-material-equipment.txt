@@ -1,0 +1,25 @@
+# How do I add Material Items and Equipment Items to Daily Logs?
+Source: https://kb.contractorforeman.com/knowledge-base/how-do-i-add-material-items-and-equipment-items-to-daily-logs/
+Read at: 2026-09-18T12:53:44.419Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+In order to add Material or Equipment items to Daily Logs, we must go to the Daily Logs Module and open the daily log in question. Once there, we have to go to either the Materials Section or the Equipment Section. These sections are located on the left panel of the Daily Log.
+
+Adding Material Items to Daily Logs
+
+Once you are in the Materials Section you will see 3 sections, Material notes (great for comments related to the materials used on site or received), Material items delivered (click on this link to learn how to use this function) and the Material Items used, which is the one we will use to have detailed records of all the materials that are used on site. Click on the plus item button located within the Material Items used to add to your daily logs from the Cost Items Database.
+
+Once you have selected your items from the pop-up window, click on the save button and you will see your material items under the Material Items Used. Double click on the empty space for QTY or for Description to add the QTY or a brief description for that material.
+
+Adding Equipment Items to Daily Logs
+
+Once you are in the Equipment Section you will see 4 sections, Equipment notes (great for comments related to the materials used on site or received), Equipment items delivered (recommended to keep track of where the piece of equipment is), the Equipment items used (function similar to the time cards), which is the one we will use to have detailed records of all the Equipment that is used on site, and the Equipment logs (which is populated from the Equipment Logs Module and the Equipment Items used).
+
+Click on the plus item button located within the Equipment Items used to add to your daily logs from the Estimate, Change Orders or the Cost Items Database. It is recommended to use items that have Hours as the unit of measurement. It is imperative that the unit for the equipment is in Hours for this function to work properly.
+
+Once we have selected the piece of the equipment we want to log and clicked on save, now it will be time to populate who is the operator or person in charge of it, how many hours was it used and a brief description of the equipment as shown below.
+
+Also, notice that by adding the Equipment Items Used, automatically the Equipment Logs was populated.
+
+All the hours register in the Equipment Items Used will be reflected as Actual cost of the project in the Job cost actual detailed report, under the column “Equipment Time Cards”.

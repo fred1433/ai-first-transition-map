@@ -1,0 +1,11 @@
+# How do I see Time Card hours in the Daily Log?
+Source: https://kb.contractorforeman.com/knowledge-base/how-do-i-see-time-card-hours-in-the-daily-log/
+Read at: 2026-09-18T12:53:31.928Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+The Time Cards are directly associated with the Daily Logs and in order for us to see them there, we must make sure that the Time Cards are entered to the same project on the same date.
+
+For example, look at the screenshot below, there are records entered. No Employee Time Cards and No Contractor Time Cards.
+
+After we had our Subcontractor to clock in and out, and had our employee to do the same thing, now we can see those time cards there. It is important to remember that only the user of the Contractor Foreman can use the features of our platform, such as the Time Cards.

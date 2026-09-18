@@ -1,0 +1,53 @@
+{
+  "url": "https://zapier.com/apps/contractor-foreman/integrations",
+  "readAt": "2026-09-18T12:56:17.273Z",
+  "items": [
+    {
+      "name": "Customer Deleted",
+      "description": "Triggers when customer is deleted.",
+      "kind": "trigger"
+    },
+    {
+      "name": "File Uploaded",
+      "description": "Triggers when upload File is uploaded.",
+      "kind": "trigger"
+    },
+    {
+      "name": "Lead Archived",
+      "description": "Triggers when lead is Archived.",
+      "kind": "trigger"
+    },
+    {
+      "name": "Lead Created",
+      "description": "Triggers when a new lead is created.",
+      "kind": "trigger"
+    },
+    {
+      "name": "Create Lead",
+      "description": "Creates a new lead in Contractor Foreman.",
+      "kind": "action"
+    },
+    {
+      "name": "Customer Archived",
+      "description": "Triggers when customer is Archived.",
+      "kind": "trigger"
+    },
+    {
+      "name": "Lead Deleted",
+      "description": "Triggers when lead is deleted.",
+      "kind": "trigger"
+    },
+    {
+      "name": "Customer Created",
+      "description": "Triggers when a new customer is created.",
+      "kind": "trigger"
+    },
+    {
+      "name": "Create Customer",
+      "description": "Creates a new customer in Contractor Foreman.",
+      "kind": "action"
+    }
+  ],
+  "moreAvailable": true,
+  "exhaustive": false
+}

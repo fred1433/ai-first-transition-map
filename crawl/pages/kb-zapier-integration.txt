@@ -1,0 +1,67 @@
+# Zapier Integration
+Source: https://kb.contractorforeman.com/knowledge-base/zapier-integration/
+Read at: 2026-09-18T12:55:47.792Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+The integration with Zapier makes it easy for you to send data from Contractor Foreman to other systems (such as MailChimp, Constant Contact, Zoho, Dropbox, OneDrive, and more). Although this process is fairly easy, we are unable to provide support for any settings or configuration outside of our system. Zapier will be able to assist with those questions.
+
+Getting Started: If you do not already have an account, you will need to create a free Zapier account at https://zapier.com/sign-up
+
+From your Contractor Foreman account, go to Menu > Settings > Integration > Zapier
+
+From there, click on the Integration URL
+
+Shortly after you’ll be asked to copy the API key displayed on the screen.
+
+Click on the Zapier App link given there
+
+Accept Invitation
+
+Go to Zapier.com and login (or create a free account if you do not have one)
+
+Click on New Zaps (on the left) and then click Create Zap (on the right)
+
+In the Trigger box, search for and select Contractor Foreman.
+
+Select “Lead” from the Trigger Event list.
+
+Click Continue
+
+Click “Sign in to Contractor Foreman”
+
+Paste the API Key copied earlier into the popup.
+
+Click “Test Trigger”
+
+If you see, sample Lead details – You’re almost done.
+
+Now continue and select Action.
+
+Search “MailChimp”
+
+Selection Action (Create New Lead or Update)
+
+Sign into MailChimp
+
+Map the fields
+
+The step below are the same as the ones above but with visual references.
+
+Step 7
+
+Step 8
+
+Step 10
+
+Step 11
+
+Step 12
+
+Step 13
+
+Step 15
+
+Step 16
+
+Step 17

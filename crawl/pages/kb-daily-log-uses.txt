@@ -1,0 +1,55 @@
+# Please list the logs that we could use the daily logs for?
+Source: https://kb.contractorforeman.com/knowledge-base/please-list-the-logs-that-we-could-use-the-daily-logs-for/
+Read at: 2026-09-18T12:54:10.964Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+As we mentioned in another of our articles, the daily logs are concise, documented records that capture essential details of the day’s work on a construction site. They typically include information about crew activities, weather conditions, equipment usage, materials delivered or used, any incidents or safety issues, and a summary of the progress made. These logs are often filled out by site superintendents or project managers. It is not uncommon for Lead Guys, Foremen and Supervisors to fill the Daily logs.
+
+Logs that we could use the Daily Logs for
+
+Under Details
+
+Activities done, progress of work log
+
+Under Details populate the “Tasks Performed”
+
+Delays log
+
+Weather Delays
+
+Schedule Delays
+
+Jobsite Conditions Log
+
+Weather Log
+
+Under People
+
+People’s notes log
+
+Subcontractors on site and hours worked log
+
+Employees on site log
+
+Under Materials
+
+Materials used log
+
+Materials delivered log
+
+Materials Notes Log
+
+Under Equipment
+
+Equipment log
+
+Equipment Delivered log
+
+Equipment notes log
+
+In order to get all the listed above logs, go to the Reports Modules and click on the “Create a New Custom Report” then select the option “Daily Logs Report”.
+
+This option will allow you to customize all the information within the Daily log and how you want to see it. This can be done by adding and removing columns.
+
+It is very important to keep in mind that as best practice, all the fields in the daily logs should be populated in order to get more detailed reports.

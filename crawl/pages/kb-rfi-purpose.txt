@@ -1,0 +1,13 @@
+# What is the purpose of a Request for Information?
+Source: https://kb.contractorforeman.com/knowledge-base/what-is-the-purpose-of-a-request-for-information/
+Read at: 2026-09-18T12:55:20.069Z
+Extractor: 1.0.0 (#eckb-article-content-body)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+What Is the Purpose of a Request for Information (RFI)?
+
+A Request for Information (RFI) is used in construction to obtain clarification when plans, drawings, specifications, or agreements contain gaps, conflicts, or missing details. When something in the construction documents is unclear, incomplete, or contradictory, an RFI provides a formal way for contractors, subcontractors, and designers to communicate and resolve the issue.
+
+RFIs ensure that all project stakeholders receive the same information, reducing misunderstandings and helping the work proceed correctly. By documenting these questions and their responses, RFIs also create a clear project record that supports accountability, accurate decision-making, and future reference.
+
+In short, the purpose of an RFI is to clarify information so the project can move forward smoothly, accurately, and in compliance with the design intent.

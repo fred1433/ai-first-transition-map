@@ -1,0 +1,15 @@
+# Contractor Foreman on Zapier, published triggers and actions
+Source: https://zapier.com/apps/contractor-foreman/integrations
+Read at: 2026-09-18T12:56:17.273Z
+Extractor: 1.0.0 (triggers-and-actions-section)
+Publicly available documentation, kept here as the evidence behind the analysis in this repository.
+
+TRIGGER	Customer Deleted	Triggers when customer is deleted.
+TRIGGER	File Uploaded	Triggers when upload File is uploaded.
+TRIGGER	Lead Archived	Triggers when lead is Archived.
+TRIGGER	Lead Created	Triggers when a new lead is created.
+ACTION	Create Lead	Creates a new lead in Contractor Foreman.
+TRIGGER	Customer Archived	Triggers when customer is Archived.
+TRIGGER	Lead Deleted	Triggers when lead is deleted.
+TRIGGER	Customer Created	Triggers when a new customer is created.
+ACTION	Create Customer	Creates a new customer in Contractor Foreman.
