@@ -6,7 +6,7 @@
  * for caching, and the answer is parsed as data, never executed. The key stays
  * on the server; nothing here ever reaches the browser.
  */
-import Anthropic from "@anthropic-ai/sdk";
+import Anthropic, { APIError } from "@anthropic-ai/sdk";
 import { DRAFT_SYSTEM_PROMPT, draftUserMessage } from "./prompt";
 
 export const MAX_OUTPUT_TOKENS = 1200;
@@ -19,6 +19,12 @@ export interface GenerationResult {
 }
 
 export class ModelNotConfigured extends Error {}
+
+/** The call did not come back: no credit left, no key accepted, no route, no answer. */
+export class ProviderUnavailable extends Error {}
+
+/** The call came back, and the answer held nothing this page can read. */
+export class ModelAnswerUnusable extends Error {}
 
 function readModelId(): string {
   const model = process.env.ANTHROPIC_MODEL;
@@ -42,24 +48,41 @@ export async function generateDraft(notes: string): Promise<GenerationResult> {
   const model = readModelId();
   const client = new Anthropic();
 
-  const response = await client.messages.create({
-    model,
-    max_tokens: MAX_OUTPUT_TOKENS,
-    // The instruction never varies, so it is the part worth caching.
-    system: [{ type: "text", text: DRAFT_SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
-    // The task is extraction against a contract, not reasoning: the whole
-    // output budget goes to the answer.
-    thinking: { type: "disabled" },
-    messages: [{ role: "user", content: draftUserMessage(notes) }],
-  });
+  let response: Anthropic.Message;
+  try {
+    response = await client.messages.create({
+      model,
+      max_tokens: MAX_OUTPUT_TOKENS,
+      // The instruction never varies, so it is the part worth caching.
+      system: [{ type: "text", text: DRAFT_SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
+      // The task is extraction against a contract, not reasoning: the whole
+      // output budget goes to the answer.
+      thinking: { type: "disabled" },
+      messages: [{ role: "user", content: draftUserMessage(notes) }],
+    });
+  } catch (error) {
+    // What the provider says can name the account, the key or the balance, so it
+    // stays in the log of this deployment and never travels to a browser.
+    console.error("The model call failed.", error);
+    if (error instanceof APIError) throw new ProviderUnavailable("The model provider did not answer the call.");
+    throw error;
+  }
 
   const text = response.content
     .filter((block): block is Anthropic.TextBlock => block.type === "text")
     .map((block) => block.text)
     .join("\n");
 
+  let raw: unknown;
+  try {
+    raw = parseModelJson(text);
+  } catch (error) {
+    console.error("The model answer could not be read.", error);
+    throw new ModelAnswerUnusable("The answer held no JSON object this page can read.");
+  }
+
   return {
-    raw: parseModelJson(text),
+    raw,
     model: response.model,
     usage: {
       inputTokens: response.usage.input_tokens,

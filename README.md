@@ -19,7 +19,7 @@ trial, no integration key. Every record in the prototype is invented.
 | `foundations.md` | What the public documentation already describes, and what the pilot actually needs |
 | `roadmap.md` | Three phases, each with an owner, a decision, what to verify, and how to go back |
 | `lib/prototype/` | The pilot: contract, provenance checks, acceptance, audit trail, the shared invariant, caps, and the model call |
-| `tests/` | The control tests, the mutation test, and the checks on the sources |
+| `tests/` | The control tests, the mutation test, the checks on the sources, and what a provider outage answers |
 | `app/`, `components/` | The page that presents all of it |
 
 ## The pilot
@@ -73,6 +73,11 @@ not known to detect anything.
 **Sources** (`tests/sources.test.ts`): the extractor keeps the article body and drops the navigation that
 every page of a knowledge base repeats, which is the difference between a reading and a claim of
 coverage. Every sentence quoted in `map/map.json` has to appear, word for word, in the page it names.
+
+**Outage** (`tests/outage.test.ts`): the client that calls the model is replaced by one that fails the way a
+provider fails, with no credit left or no connection at all. The page then says that live generation is
+unavailable and that the recorded run still works, and what the provider said about the account stays in the
+log. The recorded run is asked for right after, so that sentence is checked rather than only written.
 
 ## Running it
 

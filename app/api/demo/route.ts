@@ -7,7 +7,7 @@
  * nothing.
  */
 import { NextResponse } from "next/server";
-import { generateDraft, ModelNotConfigured } from "@/lib/prototype/generate";
+import { generateDraft, ModelAnswerUnusable, ModelNotConfigured, ProviderUnavailable } from "@/lib/prototype/generate";
 import { recordedAnswer } from "@/lib/prototype/fixtures";
 import { inspect, takeLiveCall } from "@/lib/prototype/limits";
 import { ACTORS, LOG_ID, scenario } from "@/lib/prototype/scenario";
@@ -161,6 +161,24 @@ export async function POST(request: Request) {
     }
     if (error instanceof ModelNotConfigured) {
       return NextResponse.json({ error: "Live generation is not configured on this deployment." }, { status: 503 });
+    }
+    // The two ways the model call can fail while everything else here works. The
+    // page keeps its recorded demonstration either way, so that is what the
+    // visitor is told, in the same terms as the daily caps above.
+    if (error instanceof ProviderUnavailable) {
+      return NextResponse.json(
+        {
+          error:
+            "Live generation is unavailable right now: the model provider did not answer. The recorded run still works.",
+        },
+        { status: 503, headers: { "Retry-After": "600" } },
+      );
+    }
+    if (error instanceof ModelAnswerUnusable) {
+      return NextResponse.json(
+        { error: "The model answered with something this page could not read. The recorded run still works." },
+        { status: 502 },
+      );
     }
     console.error(error);
     return NextResponse.json({ error: "Something went wrong on the server." }, { status: 500 });
